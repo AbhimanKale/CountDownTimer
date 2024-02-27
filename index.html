@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #007BFF;
+    }
+
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      color: #dc3545;
+      margin-top: 20px;
+    }
+  </style>
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="countdown"></div>
+
+  <script>
+    // Set the date and time for the countdown
+    const countDownDate = new Date("february 28, 2024 00:00:00").getTime();
+
+    // Update the countdown every 1 second
+    const countdownInterval = setInterval(function() {
+      // Get the current date and time
+      const currentDate = new Date().getTime();
+
+      // Calculate the remaining time
+      const timeRemaining = countDownDate - currentDate;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Display the countdown
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // Check if the countdown is over
+      if (timeRemaining < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
